@@ -94,7 +94,7 @@
     // Function to handle padding change
     const handlePaddingChange = () => {
       const iframeContainer = document.getElementById('myIFrameContainer');
-      const padding = parseFloat(getComputedStyle(iframeContainer).padding);
+      const padding = window.getComputedStyle(iframeContainer).padding;
       console.log('Padding changed:', padding);
     };
 
@@ -107,10 +107,16 @@
     // Start observing the iframe container for changes
     observer.observe(document.getElementById('myIFrameContainer'), config);
 
-    // Listen for form submission event
+    // Wait for the iframe to fully load its content
     const iframe = document.getElementById('myIFrame');
     iframe.addEventListener('load', () => {
-      const form = iframe.contentDocument.forms[0];
+      // Access the iframe's document object
+      const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+
+      // Access the form inside the iframe
+      const form = iframeDocument.querySelector('form');
+
+      // Listen for form submission event
       form.addEventListener('submit', handleFormSubmit);
     });
   </script>
