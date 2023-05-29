@@ -47,8 +47,7 @@
     }
     pre {
       font-family: Lemon;
-     
- font-size: 11px;
+      font-size: 11px;
       font-style: normal;
       font-variant: normal;
       font-weight: 400;
@@ -73,6 +72,7 @@
     .replacementText {
       color: #645452;
       text-align: center;
+      display: none; /* Hide the replacement text by default */
     }
   </style>
 </head>
@@ -80,7 +80,7 @@
   <div class="form-wrapper">
     <h3>2023 Reentry - WDEA Activity</h3>
     <iframe id="myIFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSecZ5NHv9E0uj35bUzhB7ad3Z6jjmpWbyPi7v9DCivxlzvPQQ/viewform?embedded=true"></iframe>
-    <div id="replacementText"></div>
+    <div id="replacementText" class="replacementText"></div>
     <h2 id="myHiddenInput">Thanks for being consistent and completing your log!!</h2>
   </div>
 
@@ -94,17 +94,18 @@
           const quote = data.quote;
           const category = data.category;
 
+          const handleFormSubmit = () => {
+            // Hide the form and show the replacement text
+            const formElement = document.querySelector('#myIFrame');
+            const replacementTextElement = document.querySelector('#replacementText');
+            formElement.style.display = 'none';
+            replacementTextElement.style.display = 'block';
+          };
+
           const handleHeightChange = () => {
             const iframe = document.getElementById('myIFrame');
             const replacementTextElement = document.getElementById('replacementText');
             const replacementTextPosition = iframe.offsetHeight + 10;
-
-            // Create or update the replacement text element
-            if (!replacementTextElement) {
-              const replacementTextElement = document.createElement('div');
-              replacementTextElement.id = 'replacementText';
-              document.body.appendChild(replacementTextElement);
-            }
 
             // Set the position of the replacement text
             replacementTextElement.style.position = 'absolute';
@@ -120,8 +121,9 @@
           };
 
           window.addEventListener('resize', handleHeightChange);
-          // iframe.addEventListener('resize', handleHeightChange);
-          // You can't directly listen to the resize event on the iframe, but you can try other methods to detect changes in the iframe height if needed.
+
+          const formElement = document.querySelector('#myIFrame').contentDocument.querySelector('form');
+          formElement.addEventListener('submit', handleFormSubmit);
         }
       })
       .catch(error => {
