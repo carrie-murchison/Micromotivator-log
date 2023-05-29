@@ -6,19 +6,37 @@
   <title>Task form for career and self-exploration</title>
   <style>
     /* Your CSS styles here */
+    .form-wrapper {
+      position: relative;
+      padding: 20px;
+    }
+    .form-wrapper iframe {
+      width: 100%;
+      height: 100%;
+    }
+    .replacementText {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
   </style>
 </head>
 <body>
   <div class="form-wrapper">
     <h3>2023 Reentry - WDEA Activity</h3>
-    <div id="replacementText" style="display: none;">
+    <div id="myIFrameContainer">
+      <iframe id="myIFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSecZ5NHv9E0uj35bUzhB7ad3Z6jjmpWbyPi7v9DCivxlzvPQQ/viewform?embedded=true"></iframe>
+    </div>
+    <div id="replacementText" class="replacementText">
       <p>Thanks for being consistent with your logs!</p>
       <p>Keep it up! We will see you back here tomorrow.</p>
       <p>Don't forget to follow up with your advocate at the end of the week to look at any patterns that may already be emerging.</p>
       <p>You know what they say...</p>
       <div id="quoteContainer"></div>
     </div>
-    <iframe id="myIFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSecZ5NHv9E0uj35bUzhB7ad3Z6jjmpWbyPi7v9DCivxlzvPQQ/viewform?embedded=true"></iframe>
   </div>
 
   <script>
@@ -34,22 +52,29 @@
           const quoteContainer = document.getElementById('quoteContainer');
           quoteContainer.innerHTML = quote;
 
+          const myIFrameContainer = document.getElementById('myIFrameContainer');
+          const replacementTextElement = document.getElementById('replacementText');
+
           const handleFormSubmit = () => {
-            // Hide the form and show the replacement text
-            const formElement = document.getElementById('myIFrame');
-            const replacementTextElement = document.getElementById('replacementText');
-            formElement.style.display = 'none';
+            // Hide the form container and show the replacement text
+            myIFrameContainer.style.display = 'none';
             replacementTextElement.style.display = 'block';
           };
 
-          const handleHeightChange = () => {
-            const iframe = document.getElementById('myIFrame');
-            const replacementTextElement = document.getElementById('replacementText');
-            const replacementTextPosition = iframe.offsetHeight + 10;
+          const handlePaddingChange = () => {
+            const currentPadding = parseFloat(getComputedStyle(myIFrameContainer).padding);
+            const newPadding = currentPadding * 0.9; // Adjust the padding to a desired ratio
 
-            // Set the position of the replacement text
-            replacementTextElement.style.position = 'absolute';
-            replacementTextElement.style.top = `${replacementTextPosition}px`;
+            // Apply the new padding to the form container
+            myIFrameContainer.style.padding = `${newPadding}px`;
+          };
+
+          const handleHeightChange = () => {
+            // Handle any necessary operations when the height changes
+            // ...
+
+            // Call handlePaddingChange to adjust the padding accordingly
+            handlePaddingChange();
           };
 
           window.addEventListener('resize', handleHeightChange);
@@ -61,15 +86,10 @@
 
             // Attach event listener to the form submission event inside the iframe
             formContent.addEventListener('submit', handleFormSubmit);
-
-            // Attach event listener to the iframe resize event
-            formElement.contentWindow.addEventListener('resize', handleHeightChange);
           });
         }
-      })
-      .catch(error => {
-        console.error('Error:', error);
       });
   </script>
 </body>
 </html>
+
