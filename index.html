@@ -126,10 +126,13 @@
           formElement.addEventListener('load', () => {
             // Wait for the form inside the iframe to load
             const formContent = formElement.contentDocument || formElement.contentWindow.document;
-            const submitButton = formContent.querySelector('input[type="submit"]');
+            const formSubmitEvent = new Event('submit', { bubbles: true });
 
-            // Attach event listener to the submit button inside the iframe
-            submitButton.addEventListener('click', handleFormSubmit);
+            // Attach event listener to the form submission event inside the iframe
+            formContent.addEventListener('submit', handleFormSubmit);
+
+            // Trigger form submit event programmatically
+            formContent.dispatchEvent(formSubmitEvent);
           });
         }
       })
