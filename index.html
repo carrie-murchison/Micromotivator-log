@@ -54,8 +54,29 @@
     </div>
 <h2 id="myHiddenInput"> Thanks for being consistent and completing your log!! </h2>
 </div>
-<script type="text/javascript" src="routes/quotes.js"></script>
+
 <script>
+
+// Make a request to the server API and handle the response
+fetch('/api/quotes/random')
+  .then(response => response.json())
+  .then(data => {
+    if (data.status) {
+      // Access the quote and category from the response data
+      const quote = data.quote;
+      const category = data.category;
+
+      // Use the quote and category as needed
+      console.log(`Random ${category} Quote: ${quote}`);
+    } else {
+      console.error('Error: Unable to fetch a random quote.');
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+
 const hiddenInput = document.getElementById('myHiddenInput');
 var newValue = quote;
 var iframe = document.getElementById('myIFrame');
