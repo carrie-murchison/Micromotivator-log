@@ -66,32 +66,31 @@ fetch('/api/quotes/random')
       const quote = data.quote;
       const category = data.category;
 
-      // Use the quote and category as needed
+
+         const handleHeightChange = () => {
+	 var iframe = document.getElementById('myIFrame');
+         const hiddenInput = document.getElementById('myHiddenInput');
+
+  
+	const replacementTextPosition = height + 10;
+// Create the replacement text element
+ 
+  if (!replacementTextElement) {
+    replacementTextElement = document.createElement('div');
+    replacementTextElement.id = 'replacementText';
+    document.body.appendChild(replacementTextElement);
+  }
+
+  // Set the position of the replacement text
+  replacementTextElement.style.position = 'absolute';
+  replacementTextElement.style.top = `${replacementTextPosition}px`;
+
+  // Update the content of the replacement text
+  replacementTextElement.textContent = quote;
+window.addEventListener('resize', handleHeightChange);
+iframe.addEventListener('resize', handleHeightChange);
+   
       console.log(`Random ${category} Quote: ${quote}`);
-    } else {
-      console.error('Error: Unable to fetch a random quote.');
-    }
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-
-
-const hiddenInput = document.getElementById('myHiddenInput');
-var newValue = quote;
-var iframe = document.getElementById('myIFrame');
-iframe.contentDocument.body.addEventListener('mouseup', Handler);
-
-function Handler() {
-
-    // 1: check if value is not already set to the `newValue`
-    if (hiddenInput.value !== newValue) {
-        // 2: change value
-        hiddenInput.value = newValue;
-        // 3: trigger `change` event
-        hiddenInput.dispatchEvent(new Event('change'));
-    }
-}
 </script>  
 </body>
 </html>
