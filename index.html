@@ -37,6 +37,13 @@
         max-width: 90%;
       }
     }
+	#myHiddenInput {
+
+	color: #645452;
+        text-align: center;
+	
+}
+
   </style>
  
 </head>
@@ -45,7 +52,7 @@
     <h3>2023 Reentry - WDEA Activity</h3>
  <iframe id="myIFrame"  src="https://docs.google.com/forms/d/e/1FAIpQLSecZ5NHv9E0uj35bUzhB7ad3Z6jjmpWbyPi7v9DCivxlzvPQQ/viewform?embedded=true" width="640" height="1644" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>  
     </div>
-<h2 class="myHiddenInput"> Thanks for being consistent and completing your log!! </h2>
+<h2 id="myHiddenInput"> Thanks for being consistent and completing your log!! </h2>
 </div>
 <script type="text/javascript" src="server.js"></script>
 <script type="text/javascript" src="routes/quotes.js"></script>
@@ -56,6 +63,7 @@ var iframe = document.getElementById('myIFrame');
 iframe.contentDocument.body.addEventListener('mouseup', Handler);
 
 function Handler() {
+
     // 1: check if value is not already set to the `newValue`
     if (hiddenInput.value !== newValue) {
         // 2: change value
