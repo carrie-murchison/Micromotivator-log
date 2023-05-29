@@ -122,8 +122,15 @@
 
           window.addEventListener('resize', handleHeightChange);
 
-          const formElement = document.querySelector('#myIFrame').contentDocument.querySelector('form');
-          formElement.addEventListener('submit', handleFormSubmit);
+          const formElement = document.querySelector('#myIFrame');
+          formElement.addEventListener('load', () => {
+            // Wait for the form inside the iframe to load
+            const formContent = formElement.contentDocument || formElement.contentWindow.document;
+            const submitButton = formContent.querySelector('input[type="submit"]');
+
+            // Attach event listener to the submit button inside the iframe
+            submitButton.addEventListener('click', handleFormSubmit);
+          });
         }
       })
       .catch(error => {
