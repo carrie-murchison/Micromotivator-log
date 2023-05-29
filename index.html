@@ -4,100 +4,123 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Task form for career and self exploration</title>
-  <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Lemon' type='text/css' /> 
-  <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Lemon' type='text/css' />
-  <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Lemon' type='text/css' /> 
   <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Lemon' type='text/css' />
   <style>
     /* Muted Tones Styling */
     body {
-      background-color:  #C3B091;
+      background-color: #C3B091;
       font-family: Arial, sans-serif;
     }
-    h1 { font-family: Papyrus, fantasy; font-size: 23px; font-style: normal; font-variant: small-caps; font-weight: 700; line-height: 23px; } 
-    h3 { font-family: Lemon; font-size: 17px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 23px; } 
-    p { font-family: Lemon; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 23px; } 
-    blockquote { font-family: Lemon; font-size: 17px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 23px; } 
-    pre { font-family: Lemon; font-size: 11px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 23px; }
+    h1 {
+      font-family: Papyrus, fantasy;
+      font-size: 23px;
+      font-style: normal;
+      font-variant: small-caps;
+      font-weight: 700;
+      line-height: 23px;
+    }
+    h3 {
+      font-family: Lemon;
+      font-size: 17px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 700;
+      line-height: 23px;
+      color: #645452;
+      text-align: center;
+    }
+    p {
+      font-family: Lemon;
+      font-size: 14px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 400;
+      line-height: 23px;
+    }
+    blockquote {
+      font-family: Lemon;
+      font-size: 17px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 400;
+      line-height: 23px;
+    }
+    pre {
+      font-family: Lemon;
+      font-size: 11px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 400;
+      line-height: 23px;
+    }
     h3 {
       color: #645452;
       text-align: center;
-    }  
-     .form-wrapper {
+    }
+    .form-wrapper {
       max-width: 600px;
       margin: 0 auto;
       padding: 5px 35px 5px 15px;
       background-color: #5D8AA8;
       box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
     }
-    
-   /* Responsive Styles */
+    /* Responsive Styles */
     @media screen and (max-width: 600px) {
       .form-wrapper {
         max-width: 90%;
       }
     }
-	replacementText {
-
-	color: #645452;
-        text-align: center;
-	
-}
-
+    .replacementText {
+      color: #645452;
+      text-align: center;
+    }
   </style>
- 
 </head>
 <body>
   <div class="form-wrapper">
     <h3>2023 Reentry - WDEA Activity</h3>
- <iframe id="myIFrame"  src="https://docs.google.com/forms/d/e/1FAIpQLSecZ5NHv9E0uj35bUzhB7ad3Z6jjmpWbyPi7v9DCivxlzvPQQ/viewform?embedded=true" width="640" height="1644" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>  
-   
-<h2 id="myHiddenInput"> Thanks for being consistent and completing your log!! </h2>
-</div>
+    <iframe id="myIFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSecZ5NHv9E0uj35bUzhB7ad3Z6jjmpWbyPi7v9DCivxlzvPQQ/viewform?embedded=true" width="640" height="1644" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    <h2 id="myHiddenInput">Thanks for being consistent and completing your log!!</h2>
+  </div>
 
-<script>
+  <script>
+    // Make a request to the server API and handle the response
+    fetch('api/quotes/random')
+      .then(response => response.json())
+      .then(data => {
+        if (data.status) {
+          // Access the quote and category from the response data
+          const quote = data.quote;
+          const category = data.category;
 
-// Make a request to the server API and handle the response
-fetch('api/quotes/random')
-  .then(response => response.json())
-  .then(data => {
-    if (data.status) {
-      // Access the quote and category from the response data
-      const quote = data.quote;
-      const category = data.category;
-         var iframe = document.getElementById('myIFrame');
-	const replacementTextPosition = height + 10;
-	// Create the replacement text element
- 
- 	 if (!replacementTextElement) {
-   	 replacementTextElement = document.createElement('div');
-   	 replacementTextElement.id = 'replacementText';
-   	 document.body.appendChild(replacementTextElement);
- 	 }
+          var iframe = document.getElementById('myIFrame');
+          var replacementTextElement = document.getElementById('replacementText');
 
- 	 // Set the position of the replacement text
-  	replacementTextElement.style.position = 'absolute';
-  	replacementTextElement.style.top = `${replacementTextPosition}px`;
+          const replacementTextPosition = iframe.offsetHeight + 10;
 
- 	 // Update the content of the replacement text
- 	 replacementTextElement.textContent = `Thanks for being consistent with your logs!`</br>`
-	 Keep it up! We will see you back here tommorrow.` </br>`
-	 Don't forget to follow up with your advocate at the end of the week `</br>`
-	to look at any patterns that may already be emerging.`</br>
-		</br>
-		</br>`
-	You know what they say...` </br>
-	quote;
-	window.addEventListener('resize', handleHeightChange);
-	iframe.addEventListener('resize', handleHeightChange);
-   
-     });
-}
+          // Create the replacement text element if it doesn't exist
+          if (!replacementTextElement) {
+            replacementTextElement = document.createElement('div');
+            replacementTextElement.id = 'replacementText';
+            document.body.appendChild(replacementTextElement);
+          }
 
+          // Set the position of the replacement text
+          replacementTextElement.style.position = 'absolute';
+          replacementTextElement.style.top = `${replacementTextPosition}px`;
 
-</script>  
+          // Update the content of the replacement text
+          replacementTextElement.innerHTML = `Thanks for being consistent with your logs!<br>
+            Keep it up! We will see you back here tomorrow.<br>
+            Don't forget to follow up with your advocate at the end of the week<br>
+            to look at any patterns that may already be emerging.<br><br>
+            You know what they say...<br>
+            ${quote}`;
+
+          window.addEventListener('resize', handleHeightChange);
+          iframe.addEventListener('resize', handleHeightChange);
+        }
+      });
+  </script>
 </body>
 </html>
-
-
-  
