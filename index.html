@@ -3,24 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Task form for career and self-exploration</title>
+  <title>Task form for career and self exploration</title>
+  <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Lemon' type='text/css' />
   <style>
-    /* Your CSS styles here */
-    .form-wrapper {
-      position: relative;
-      padding: 20px;
+    /* Muted Tones Styling */
+    body {
+      background-color: #C3B091;
+      font-family: Arial, sans-serif;
     }
-    .form-wrapper iframe {
-      width: 100%;
-      height: 100%;
+    h1 {
+      font-family: Papyrus, fantasy;
+      font-size: 23px;
+      font-style: normal;
+      font-variant: small-caps;
+      font-weight: 700;
+      line-height: 23px;
+    }
+    h3 {
+      font-family: Lemon;
+      font-size: 17px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 700;
+      line-height: 23px;
+      color: #645452;
+      text-align: center;
+    }
+    p {
+      font-family: Lemon;
+      font-size: 14px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 400;
+      line-height: 23px;
+    }
+    blockquote {
+      font-family: Lemon;
+      font-size: 17px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 400;
+      line-height: 23px;
+    }
+    pre {
+      font-family: Lemon;
+      font-size: 11px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 400;
+    }
+    h3 {
+      color: #645452;
+      text-align: center;
+    }
+    .form-wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 5px 35px 5px 15px;
+      background-color: #5D8AA8;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    }
+    /* Responsive Styles */
+    @media screen and (max-width: 600px) {
+      .form-wrapper {
+        max-width: 90%;
+      }
     }
     .replacementText {
-      display: none;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      color: #645452;
+      text-align: center;
     }
   </style>
 </head>
@@ -30,66 +81,38 @@
     <div id="myIFrameContainer">
       <iframe id="myIFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSecZ5NHv9E0uj35bUzhB7ad3Z6jjmpWbyPi7v9DCivxlzvPQQ/viewform?embedded=true"></iframe>
     </div>
-    <div id="replacementText" class="replacementText">
-      <p>Thanks for being consistent with your logs!</p>
-      <p>Keep it up! We will see you back here tomorrow.</p>
-      <p>Don't forget to follow up with your advocate at the end of the week to look at any patterns that may already be emerging.</p>
-      <p>You know what they say...</p>
-      <div id="quoteContainer"></div>
-    </div>
+    <div id="replacementText" class="replacementText" style="display: none;"></div>
   </div>
 
   <script>
-    // Make a request to the server API and handle the response
-    fetch('api/quotes/random')
-      .then(response => response.json())
-      .then(data => {
-        if (data.status) {
-          // Access the quote and category from the response data
-          const quote = data.quote;
-          const category = data.category;
+    // Function to handle form submission
+    const handleFormSubmit = () => {
+      const replacementTextElement = document.getElementById('replacementText');
+      replacementTextElement.style.display = 'block';
+    };
 
-          const quoteContainer = document.getElementById('quoteContainer');
-          quoteContainer.innerHTML = quote;
+    // Function to handle padding change
+    const handlePaddingChange = () => {
+      const iframeContainer = document.getElementById('myIFrameContainer');
+      const padding = parseFloat(getComputedStyle(iframeContainer).padding);
+      console.log('Padding changed:', padding);
+    };
 
-          const myIFrameContainer = document.getElementById('myIFrameContainer');
-          const replacementTextElement = document.getElementById('replacementText');
+    // Create a MutationObserver to listen for changes in padding
+    const observer = new MutationObserver(handlePaddingChange);
 
-          const handleFormSubmit = () => {
-            // Hide the form container and show the replacement text
-            myIFrameContainer.style.display = 'none';
-            replacementTextElement.style.display = 'block';
-          };
+    // Configure the observer to observe changes in style attribute
+    const config = { attributes: true, attributeFilter: ['style'] };
 
-          const handlePaddingChange = () => {
-            const currentPadding = parseFloat(getComputedStyle(myIFrameContainer).padding);
-            const newPadding = currentPadding * 0.9; // Adjust the padding to a desired ratio
+    // Start observing the iframe container for changes
+    observer.observe(document.getElementById('myIFrameContainer'), config);
 
-            // Apply the new padding to the form container
-            myIFrameContainer.style.padding = `${newPadding}px`;
-          };
-
-          const handleHeightChange = () => {
-            // Handle any necessary operations when the height changes
-            // ...
-
-            // Call handlePaddingChange to adjust the padding accordingly
-            handlePaddingChange();
-          };
-
-          window.addEventListener('resize', handleHeightChange);
-
-          const formElement = document.getElementById('myIFrame');
-          formElement.addEventListener('load', () => {
-            // Wait for the form inside the iframe to load
-            const formContent = formElement.contentDocument || formElement.contentWindow.document;
-
-            // Attach event listener to the form submission event inside the iframe
-            formContent.addEventListener('submit', handleFormSubmit);
-          });
-        }
-      });
+    // Listen for form submission event
+    const iframe = document.getElementById('myIFrame');
+    iframe.addEventListener('load', () => {
+      const form = iframe.contentDocument.forms[0];
+      form.addEventListener('submit', handleFormSubmit);
+    });
   </script>
 </body>
 </html>
-
