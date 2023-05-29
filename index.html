@@ -92,19 +92,27 @@
           // Access the quote and category from the response data
           const quote = data.quote;
           const category = data.category;
+	
 
-          var iframe = document.getElementById('myIFrame');
+	const handleHeightChange = () => {
+
+	 var iframe = document.getElementById('myIFrame');
           var replacementTextElement = document.getElementById('replacementText');
 
           const replacementTextPosition = iframe.offsetHeight + 10;
 
-          // Create the replacement text element if it doesn't exist
-          if (!replacementTextElement) {
-            replacementTextElement = document.createElement('div');
-            replacementTextElement.id = 'replacementText';
-            document.body.appendChild(replacementTextElement);
-          }
+		  const height = divElement.offsetHeight;
 
+  		// Calculate the desired position of the replacement text
+  		const replacementTextPosition = height + 10; // Example: 10 pixels below the bottom of the div
+
+  // Create or update the replacement text element
+  let replacementTextElement = document.getElementById('replacementText');
+  if (!replacemen1tTextElement) {
+    replacementTextElement = document.createElement('div');
+    replacementTextElement.id = 'replacementText';
+    document.body.appendChild(replacementTextElement);
+        
           // Set the position of the replacement text
           replacementTextElement.style.position = 'absolute';
           replacementTextElement.style.top = `${replacementTextPosition}px`;
