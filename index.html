@@ -131,7 +131,7 @@
 
 <div id="replacementText" class="replacementText"  style="display: none;">
 
-  <div class="ebcf_modal-content">
+  <div id="ebcf_modal-content">
     <span class="ebcf_close">
     <p>Some text in the Modal..</p>
 	<blockquote id="quoteContainer" > </blockquote> </span>
@@ -155,7 +155,7 @@
 
 	let quote = {};
 	var ebModal = document.getElementById("replacementText");
-	var content = document.getElementsByClassName("ebcf_modal_content")[0];
+	var content = document.getElementsByClassName("ebcf_modal-content")[0];
 		content.style.display ="block";
 	var ebSpan = document.getElementsByClassName("ebcf_close")[0];
 	  ebModal.style.display = "block";
