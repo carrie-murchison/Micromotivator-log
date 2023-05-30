@@ -79,12 +79,15 @@
 	background-color: #4c7d8e;
 }
 .modal{
-position: relative;
+position: fixed;
 width: 100%;
+font-weight: bold;
+font-size: 1.5em;
 height: auto;
 text-align: center;
 background-color: #99b898;
 color: white;
+margin: 200px 25% auto 25%;
 font-family: Papyrus, fantasy;   
 } 
 
@@ -104,15 +107,15 @@ margin: 0;
     <div id="myIFrameContainer">
 	<h2>2023 Reentry - WDEA Activity</h2>
 	<ul class="list">
-     		<li> <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSecZ5NHv9E0uj35bUzhB7ad3Z6jjmpWbyPi7v9DCivxlzvPQQ/viewform?embedded=true" width="640" height="1644" frameborder="0" marginheight="0" marginwidth="0"></iframe>
-		</li>
-		<li><div id="modal" class="modal">
+     		<iframe id="myIframe" style="display: block;" src="https://docs.google.com/forms/d/e/1FAIpQLSecZ5NHv9E0uj35bUzhB7ad3Z6jjmpWbyPi7v9DCivxlzvPQQ/viewform?embedded=true" width="640" height="1644" frameborder="0" marginheight="0" marginwidth="0"></iframe>
+		
+		<div id="modal" class="modal" style="display: none;">
 		<div id="replacementText"  class="replace">Thank you for logging!! It's important to be consistent, so we will see you tommorrow. Also, don't forget to look for patterns with your advocate at the end of the week. 
 		<div id="quote" class="blockq">
 		</div>
 		</div>
-		</div></li>
-		</ul>
+		</div>
+		
 
 	</div>
 	</div>
@@ -122,16 +125,16 @@ margin: 0;
 	        const handleFormSubmit = () => {
             // Hide the form container and show the replacement text
           // Show the replacement text
-     	let replace = document.getElementById("replacementText");
-		replace.scrollIntoView(true);
+     
 		
 	let modal = document.getElementById("modal");
-		modal.scrollIntoView(true);
+		modal.style.display = "block";
 		
 	let blockq = document.getElementById("quote");
-		blockq.scrollIntoView(true);
+		blockq.style.display = "block";
+	document.getElementById("blockq").style.display = "block";
 		
-	document.getElementById("myIFrameContainer").style.display = 'none';
+	document.getElementById("myIframe").style.display = 'none';
     };
 	let quote = {};
 	fetch('api/quotes/random')
@@ -142,7 +145,7 @@ margin: 0;
           var quote = data.quote;
           quote:quote = quote
 		};
-        document.getElementById("quote").innerHTML = quote.quote;
+        document.getElementById("blockq").innerHTML = quote.quote;
 	});
 
                
