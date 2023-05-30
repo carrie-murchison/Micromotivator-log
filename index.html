@@ -10,7 +10,7 @@
     /* Muted Tones Styling */
     body {
       background-color: #C3B091;
-      font-family: Arial, sans-serif;
+     
     }
     h1 {
       font-family: Papyrus, fantasy;
@@ -21,7 +21,7 @@
       line-height: 23px;
     }
     h3 {
-      font-family: Lemon;
+      font-family: Papyrus, fantasy;
       font-size: 17px;
       font-style: normal;
       font-variant: normal;
@@ -53,10 +53,7 @@
       font-variant: normal;
       font-weight: 400;
     }
-    h3 {
-      color: #645452;
-      text-align: center;
-    }
+   
     #myIFrameContainer {
       position: relative;
 	width: 100%;
@@ -72,49 +69,6 @@
         max-width: 90%;
       }
     }
-   
-
-/* The Modal (background) */
-.ebcf_modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-.ebcf_modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-	display: none;
-      color: #645452;
-      text-align: center;
-}
-
-/* The Close Button */
-.ebcf_close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.ebcf_close:hover,
-.ebcf_close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
 .background {
 	position: absolute;
 	background-size: cover;
@@ -124,6 +78,18 @@
 	text-align: center;
 	background-color: #4c7d8e;
 }
+.modal{
+position: relative;
+width: 100%;
+height: auto;
+text-align: center;
+background-color: #99b898;
+color: white;
+font-family: Papyrus, fantasy;   
+z-index: 1;
+display: none;
+background-size: cover;
+} 
   </style>
 </head>
 <body>
@@ -132,34 +98,26 @@
     <div id="myIFrameContainer">
 	<h2>2023 Reentry - WDEA Activity</h2>
       <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSecZ5NHv9E0uj35bUzhB7ad3Z6jjmpWbyPi7v9DCivxlzvPQQ/viewform?embedded=true" width="640" height="1644" frameborder="0" marginheight="0" marginwidth="0"></iframe>
-    </div>
+		<div id="modal" class="modal">
+		<div id="replacementText"  class="content">
+		<div id="quote" class="quote">
+		</div>
+		</div>
+		</div>
 
-
-  <div id="ebcf_modal-content">
-    <span class="ebcf_close">
-    <p>Some text in the Modal..</p>
-	<blockquote id="quoteContainer" > </blockquote> </span>
-  </div>
-
-</div>
+	</div>
 	</div>
   <script>
     // Function to handle form submit
 
 	        const handleFormSubmit = () => {
             // Hide the form container and show the replacement text
-          document.getElementById("myIFrameContainer").style.display = 'none';
           // Show the replacement text
      	document.getElementById("replacementText").style.display = 'block';
+	document.getElementById("modal").style.display = 'block';
+	document.getElementById("quote").style.display = 'block';
     };
-
-
-
-
-
 	let quote = {};
-	var ebModal = document.getElementById("ebcf_modal-content");
-	var ebSpan = document.getElementsByClassName("ebcf_close")[0];
 	  ebModal.style.display = "block";
 	fetch('api/quotes/random')
       .then(response => response.json())
@@ -169,14 +127,10 @@
           var quote = data.quote;
           quote:quote = quote
 		};
-	});
-          const quoteContainer = document.getElementById('quoteContainer');
-          document.getElementById("quoteContainer").innerHTML = quote.quote;
-	
-          const myIFrameContainer = document.getElementById('myIFrameContainer');
-          const replacementTextElement = document.getElementById('replacementText');
+        document.getElementById("quote").innerHTML = quote.quote;
+	});O
 
-      
+               
     // Listen for the alert event
     window.addEventListener('alert', handleFormSubmit);
   </script>
