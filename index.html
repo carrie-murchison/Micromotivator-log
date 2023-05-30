@@ -94,7 +94,8 @@ display: hidden;
 </div>
    
     <div id="replacementText" class="replacementText">
-      <p id="thanks">Thanks for being consistent with your logs! Keep it up!</p> 
+      <p id="thanks">O
+</p> 
   <div id="quoteContainer" class="type"></div>
     </div>
   </div>
@@ -112,7 +113,7 @@ display: hidden;
         if (data.status) {
 	var typed = new Typed( '.type', {strings: [`${data.quote}`], typeSpeed: 30});
 	 // Show the replacement text
-	var thanks = new Typed('.thanks', {strings: ['Thank you for being consistent with your logs.', 'See you tomorrow!', 'And don't forget to follow up and look for patterns with your advocated this week'] typespeed: 25});
+	var thanks = new Typed('.thanks', {strings: ['Thank you for being consistent with your logs.', 'See you tomorrow!', 'And don't forget to follow up and look for patterns with your advocated this week'], typespeed: 25});
 	 replacementTextElement.style.display = 'block';
    }
 });
