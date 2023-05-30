@@ -155,7 +155,8 @@
 
 	let quote = {};
 	var ebModal = document.getElementById("replacementText");
-			document.getElementsByClassName("ebcf_modal_content")[0].style.display ="block";
+	var content = document.getElementsByClassName("ebcf_modal_content")[0];
+		content.style.display ="block";
 	var ebSpan = document.getElementsByClassName("ebcf_close")[0];
 	  ebModal.style.display = "block";
 	fetch('api/quotes/random')
