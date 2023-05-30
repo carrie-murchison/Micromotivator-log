@@ -9,7 +9,7 @@
     /* Muted Tones Styling */
     body {
       background-color: #C3B091;
- font-family: Papyrus, fantasy;
+      font-family: Arial, sans-serif;
     }
     h1 {
       font-family: Papyrus, fantasy;
@@ -57,7 +57,7 @@
       text-align: center;
     }
     .form-wrapper {
-      max-width: 900px;
+      max-width: 600px;
       margin: 0 auto;
       padding: 5px 35px 5px 15px;
       background-color: #5D8AA8;
@@ -79,7 +79,7 @@
   <div class="form-wrapper">
     <h3>2023 Reentry - WDEA Activity</h3>
     <div id="myIFrameContainer">
-      <iframe style="width: 640px; height: 1675px;" id="myIFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSecZ5NHv9E0uj35bUzhB7ad3Z6jjmpWbyPi7v9DCivxlzvPQQ/viewform?embedded=true"></iframe>
+      <iframe style="height: 1675; width: auto; margin-left: 25%; margin-right: 25%;"  id="myIFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSecZ5NHv9E0uj35bUzhB7ad3Z6jjmpWbyPi7v9DCivxlzvPQQ/viewform?embedded=true"></iframe>
     </div>
     <div id="replacementText" class="replacementText" style="display: none;"></div>
   </div>
@@ -88,37 +88,13 @@
     // Function to handle form submission
     const handleFormSubmit = () => {
       const replacementTextElement = document.getElementById('replacementText');
+
+      // Show the replacement text
       replacementTextElement.style.display = 'block';
     };
 
-    // Function to handle padding change
-    const handlePaddingChange = () => {
-      const iframeContainer = document.getElementById('myIFrameContainer');
-      const padding = window.getComputedStyle(iframeContainer).padding;
-      console.log('Padding changed:', padding);
-    };
-
-    // Create a MutationObserver to listen for changes in padding
-    const observer = new MutationObserver(handlePaddingChange);
-
-    // Configure the observer to observe changes in style attribute
-    const config = { attributes: true, attributeFilter: ['style'] };
-
-    // Start observing the iframe container for changes
-    observer.observe(document.getElementById('myIFrameContainer'), config);
-
-    // Wait for the iframe to fully load its content
-    const iframe = document.getElementById('myIFrame');
-    iframe.addEventListener('load', () => {
-      // Access the iframe's document object
-      const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-
-      // Access the form inside the iframe
-      const form = iframeDocument.querySelector('form');
-
-      // Listen for form submission event
-      form.addEventListener('submit', handleFormSubmit);
-    });
+    // Listen for the alert event
+    window.addEventListener('alert', handleFormSubmit);
   </script>
 </body>
 </html>
