@@ -79,7 +79,7 @@
 	background-color: #4c7d8e;
 }
 .modal{
-position: fixed;
+position: absolute;
 width: 100%;
 font-weight: bold;
 font-size: 1.5em;
@@ -91,14 +91,6 @@ margin: 200px 25% auto 25%;
 font-family: Papyrus, fantasy;   
 } 
 
-.list{
-text-decoration: none;
-}
-ul.list{
-list-style-type:none;
-padding: 0;
-margin: 0;
-}
   </style>
 </head>
 <body>
@@ -106,11 +98,9 @@ margin: 0;
    <div class="background">
     <div id="myIFrameContainer">
 	<h2>2023 Reentry - WDEA Activity</h2>
-	<ul class="list">
-     		<iframe id="myIframe" style="display: block;" src="https://docs.google.com/forms/d/e/1FAIpQLSecZ5NHv9E0uj35bUzhB7ad3Z6jjmpWbyPi7v9DCivxlzvPQQ/viewform?embedded=true" width="640" height="1644" frameborder="0" marginheight="0" marginwidth="0"></iframe>
-		
+	<iframe id="myIframe" style="display: block;" src="https://docs.google.com/forms/d/e/1FAIpQLSecZ5NHv9E0uj35bUzhB7ad3Z6jjmpWbyPi7v9DCivxlzvPQQ/viewform?embedded=true" width="640" height="1644" frameborder="0" marginheight="0" marginwidth="0"></iframe>
 		<div id="modal" class="modal" style="display: none;">
-		<div id="replacementText"  class="replace">Thank you for logging!! It's important to be consistent, so we will see you tommorrow. Also, don't forget to look for patterns with your advocate at the end of the week. 
+		<div id="replacementText"  class="replace"><span>Thank you for logging!! It's important to be consistent, so we will see you tommorrow. Also, don't forget to look for patterns with your advocate at the end of the week. </span>
 		<div id="quote" class="blockq">
 		</div>
 		</div>
