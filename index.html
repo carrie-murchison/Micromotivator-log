@@ -30,6 +30,8 @@ html,body {
   width:100%;
   top:0;
   left:0;    
+  display: hidden;
+}
 
     h1 {
       font-family: Papyrus, fantasy;
@@ -70,7 +72,8 @@ html,body {
       text-align: center;
     }
     .form-wrapper {
-      max-width: 600px;
+      max-width: 800px;
+	display: hidden;
       margin: 50% auto;
       padding: 5px 35px 5px 15px;
       background-color: #5D8AA8;
@@ -232,8 +235,6 @@ html,body {
   <script>
 
     // Function to handle form submission
-	//hide the form
-	//document.getElementById('form').style.display = 'hidden';
     const handleFormSubmit = () => {
       const replacementTextElement = document.getElementById('replacementText');
       fetch('api/quotes/random')
