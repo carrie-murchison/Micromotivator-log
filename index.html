@@ -155,14 +155,14 @@
 	var ebSpan = document.getElementsByClassName("ebcf_close")[0];
 	  ebModal.style.display = "block";
 	fetch('api/quotes/random')
-      .then(response => response.json()
+      .then(response => response.json())
       .then(data => {
         if (data.status) {
           // Access the quote and category from the response data
           const quote = data.quote;
           const category = data.category;
-		)};
-	}
+		};
+	});
           const quoteContainer = document.getElementById('quoteContainer');
           quoteContainer.innerHTML = quote;
 
