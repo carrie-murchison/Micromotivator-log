@@ -79,15 +79,6 @@
 	background-color: #4c7d8e;
 }
 .modal{
-display: none;
-}
-.replace {
-display: none;
-}
-.blockq {
-display: none;
-}
-#modal{
 position: relative;
 width: 100%;
 height: auto;
@@ -95,9 +86,16 @@ text-align: center;
 background-color: #99b898;
 color: white;
 font-family: Papyrus, fantasy;   
-z-index: 0;
-background-size: cover;
 } 
+
+.list{
+text-decoration: none;
+}
+ul.list{
+list-style-type:none;
+padding: 0;
+margin: 0;
+}
   </style>
 </head>
 <body>
@@ -105,13 +103,16 @@ background-size: cover;
    <div class="background">
     <div id="myIFrameContainer">
 	<h2>2023 Reentry - WDEA Activity</h2>
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSecZ5NHv9E0uj35bUzhB7ad3Z6jjmpWbyPi7v9DCivxlzvPQQ/viewform?embedded=true" width="640" height="1644" frameborder="0" marginheight="0" marginwidth="0"></iframe>
-		<div id="modal" class="modal">
+	<ul class="list">
+     		<li> <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSecZ5NHv9E0uj35bUzhB7ad3Z6jjmpWbyPi7v9DCivxlzvPQQ/viewform?embedded=true" width="640" height="1644" frameborder="0" marginheight="0" marginwidth="0"></iframe>
+		</li>
+		<li><div id="modal" class="modal">
 		<div id="replacementText"  class="replace">Thank you for logging!! It's important to be consistent, so we will see you tommorrow. Also, don't forget to look for patterns with your advocate at the end of the week. 
 		<div id="quote" class="blockq">
 		</div>
 		</div>
-		</div>
+		</div></li>
+		</ul>
 
 	</div>
 	</div>
@@ -122,14 +123,14 @@ background-size: cover;
             // Hide the form container and show the replacement text
           // Show the replacement text
      	let replace = document.getElementById("replacementText");
-		replace.style.display = 'block';
-		replace.removeAttribute('class');
+		replace.scrollIntoView(true);
+		
 	let modal = document.getElementById("modal");
-		modal.style.display = 'block';
-		modal.removeAttribute('class');
+		modal.scrollIntoView(true);
+		
 	let blockq = document.getElementById("quote");
-		blockq.style.display = 'block';
-		blockq.removeAttribute('class');
+		blockq.scrollIntoView(true);
+		
 	document.getElementById("myIFrameContainer").style.display = 'none';
     };
 	let quote = {};
