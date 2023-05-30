@@ -78,7 +78,7 @@
 	text-align: center;
 	background-color: #4c7d8e;
 }
-.modal{
+#modal{
 position: relative;
 width: 100%;
 height: auto;
@@ -86,7 +86,7 @@ text-align: center;
 background-color: #99b898;
 color: white;
 font-family: Papyrus, fantasy;   
-z-index: 1;
+z-index: 0;
 display: none;
 background-size: cover;
 } 
@@ -99,7 +99,7 @@ background-size: cover;
 	<h2>2023 Reentry - WDEA Activity</h2>
       <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSecZ5NHv9E0uj35bUzhB7ad3Z6jjmpWbyPi7v9DCivxlzvPQQ/viewform?embedded=true" width="640" height="1644" frameborder="0" marginheight="0" marginwidth="0"></iframe>
 		<div id="modal" class="modal">
-		<div id="replacementText"  class="content">
+		<div id="replacementText"  class="content">Thank you for logging!! It's important to be consistent, so we will see you tommorrow. Also, don't forget to look for patterns with your advocate at the end of the week. 
 		<div id="quote" class="quote">
 		</div>
 		</div>
@@ -118,7 +118,6 @@ background-size: cover;
 	document.getElementById("quote").style.display = 'block';
     };
 	let quote = {};
-	  ebModal.style.display = "block";
 	fetch('api/quotes/random')
       .then(response => response.json())
       .then(data => {
@@ -128,7 +127,7 @@ background-size: cover;
           quote:quote = quote
 		};
         document.getElementById("quote").innerHTML = quote.quote;
-	});O
+	});
 
                
     // Listen for the alert event
