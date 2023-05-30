@@ -3,33 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Task form exploring career interests and motivations</title>
+  <title>Task form for career and self exploration</title>
   <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Lemon' type='text/css' />
   <style>
-* {
-  box-sizing:border-box;
-}
-
-html,body {
-  background-color: #C3B091;
-  min-height:100%;
-  height:100%;
-  background-size:cover;
-  background-position:top center;
-  font-family:helvetica neue, helvetica, arial, sans-serif;
-  font-weight:200;
-}
-
-#modal-container {
-  position:fixed;
-  display:table;
-  height:100%;
-  width:100%;
-  top:0;
-  left:0;    
-  display: hidden;
-}
-
+    /* Muted Tones Styling */
+    body {
+      background-color: #C3B091;
+      font-family: Arial, sans-serif;
+    }
     h1 {
       font-family: Papyrus, fantasy;
       font-size: 23px;
@@ -64,14 +45,20 @@ html,body {
       font-weight: 400;
       line-height: 23px;
     }
+    pre {
+      font-family: Lemon;
+      font-size: 11px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 400;
+    }
     h3 {
       color: #645452;
       text-align: center;
     }
     .form-wrapper {
-      max-width: 800px;
-	display: hidden;
-      margin: 50% auto;
+      max-width: 600px;
+      margin: 0 auto;
       padding: 5px 35px 5px 15px;
       background-color: #5D8AA8;
       box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
@@ -82,179 +69,118 @@ html,body {
         max-width: 90%;
       }
     }
- 
-.replacementText  {
-    transform:scale(1);
-    .modal-background {
-      background:rgba(0,0,0,.0);
-      animation: fadeIn .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
-      .modal {
-        height:75px;
-        width:75px;
-        border-radius:75px;
-        overflow:hidden;
-        animation: bondJamesBond 1.5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
-        h2,p {
-          opacity:0;
-          position:relative;
-          animation: modalContentFadeIn .5s 1.4s linear forwards;
-        }
-      }
+    .replacementText {
+      color: #645452;
+      text-align: center;
     }
-    &.out {
-      animation: slowFade .5s 1.5s linear forwards;
-      .modal-background {
-        background-color:rgba(0,0,0,.7);
-        animation: fadeToRed 2s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
-        .modal {
-          border-radius:3px;
-          height:162px;
-          width:227px;
-          animation: killShot 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
-          h2,p {
-            animation:modalContentFadeOut .5s .5 cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
-          }
-        }
-      }
-    }
-  }
-  .modal-background {
-    display:table-cell;
-    background:rgba(0,0,0,.8);
-    text-align:center;
-    vertical-align:middle;
-    .modal {
-      background:tan;
-      padding:50px;
-      display:inline-block;
-      border-radius:3px;
-      font-weight:300;
-      position:relative;
-      h2 {
-        font-size:25px;
-        line-height:25px;
-        margin-bottom:15px;
-      }
-      p {
-        font-size:18px;
-        line-height:22px;
-      }
-      .modal-svg {
-        position:absolute;
-        top:0;
-        left:0;
-        height:100%;
-        width:100%;
-        border-radius:3px;
-        rect {
-          stroke: #fff;
-          stroke-width: 2px;
-          stroke-dasharray: 778;
-          stroke-dashoffset: 778;
-        }
-      }
-    }
-  }
+
+/* The Modal (background) */
+.ebcf_modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-.content {
-  min-height:100%;
-  height:100%;
-  background:white;
-  position:relative;
-  z-index:0;
-  h1 {
-    padding:75px 0 30px 0;
-    text-align:center;
-    font-size:30px;
-    line-height:30px;
-  }
-  
-
-@keyframes bondJamesBond {
-  0% {
-    transform:translateX(1000px);
-  }
-  80% {
-    transform:translateX(0px);
-    border-radius:75px;
-    height:75px;
-    width:75px;
-  }
-  90% {
-    border-radius:3px;
-    height:182px;
-    width:247px;
-  }
-  100% {
-    border-radius:3px;
-    height:162px;
-    width:227px;
-  }
+/* Modal Content */
+.ebcf_modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
 }
 
-@keyframes killShot {
-  0% {
-    transform:translateY(0) rotate(0deg);
-    opacity:1;
-  }
-  100% {
-    transform:translateY(300px) rotate(45deg);
-    opacity:0;
-  }
+/* The Close Button */
+.ebcf_close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
-
+.ebcf_close:hover,
+.ebcf_close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
   </style>
 </head>
 <body>
   <div class="form-wrapper">
     <h3>2023 Reentry - WDEA Activity</h3>
     <div id="myIFrameContainer">
-      <iframe style="height: 1675px; width: 640px;"  id="myIFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSecZ5NHv9E0uj35bUzhB7ad3Z6jjmpWbyPi7v9DCivxlzvPQQ/viewform?embedded=true"></iframe>
+      <iframe id="myIFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSecZ5NHv9E0uj35bUzhB7ad3Z6jjmpWbyPi7v9DCivxlzvPQQ/viewform?embedded=true"></iframe>
     </div>
-</div>
 
-   <div id="modal-container">
-	<div class="modal-background">
-	   <svg class="modal-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="none">
-								<rect x="0" y="0" fill="none" width="226" height="162" rx="3" ry="3"></rect>
-							</svg>
-    <div id="replacementText" class="replacementText modal">
-      <p id="thanks modal"></p> 
-  <div id="quoteContainer" class="type modal"></div>
-    </div>
+
+   
+ 
+
+<div id="replacementText" class="replacementText"  style="display: none;">
+
+  <div class="ebcf_modal-content">
+    <span class="ebcf_close">
+    <p>Some text in the Modal..</p> </span>
   </div>
-	</div>
+
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script>
+    // Function to handle form submit
 
-    // Function to handle form submission
-    const handleFormSubmit = () => {
-      const replacementTextElement = document.getElementById('replacementText');
-      fetch('api/quotes/random')
+	        const handleFormSubmit = () => {
+            // Hide the form container and show the replacement text
+          document.getElementById("myIFrameContainer").style.display = 'none';
+          // Show the replacement text
+     	document.getElementById("replacementText").style.display = 'block';
+    };
+
+
+
+
+
+
+	var ebModal = document.getElementById("replacementText");
+	var ebSpan = document.getElementsByClassName("ebcf_close")[0];
+	  ebModal.style.display = "block";
+	fetch('api/quotes/random')
       .then(response => response.json())
       .then(data => {
         if (data.status) {
-	var typed = new Typed( '.type', {strings: [`${data.quote}`], typeSpeed: 30});
-	 // Show the replacement text
-	var thanks = new Typed(  '.thanks', {strings: [`Thank you for being consistent with your logs.`, `See you tomorrow!`, `And don't forget to follow up and look for patterns with your advocated this week`], typeSpeed: 25});
-	 replacementTextElement.style.display = 'block';
-         replacementTextElement.addClass('seven');
+          // Access the quote and category from the response data
+          const quote = data.quote;
+          const category = data.category;
 
+          const quoteContainer = document.getElementById('quoteContainer');
+          quoteContainer.innerHTML = quote;
 
-   }
-});
- }
+          const myIFrameContainer = document.getElementById('myIFrameContainer');
+          const replacementTextElement = document.getElementById('replacementText');
 
-
+          const handleFormSubmit = () => {
+            // Hide the form container and show the replacement text
+            myIFrameContainer.style.display = 'none';
+            replacementTextElement.style.display = 'block';
+          };
+      // Show the replacement text
+      replacementTextElement.style.display = 'block';
+    };
+	window.onclick = function(event) {
+    if (event.target == ebModal) {
+        ebModal.style.display = "none";
+    }
+}
     // Listen for the alert event
     window.addEventListener('alert', handleFormSubmit);
- 
-
   </script>
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 </body>
 </html>
