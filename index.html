@@ -161,7 +161,8 @@
           // Access the quote and category from the response data
           const quote = data.quote;
           const category = data.category;
-
+		});
+	}
           const quoteContainer = document.getElementById('quoteContainer');
           quoteContainer.innerHTML = quote;
 
@@ -172,15 +173,7 @@
             // Hide the form container and show the replacement text
             myIFrameContainer.style.display = 'none';
             replacementTextElement.style.display = 'block';
-          };
-      // Show the replacement text
-      replacementTextElement.style.display = 'block';
-    };
-	window.onclick = function(event) {
-    if (event.target == ebModal) {
-        ebModal.style.display = "none";
-    }
-}
+ 
     // Listen for the alert event
     window.addEventListener('alert', handleFormSubmit);
   </script>
