@@ -99,6 +99,7 @@
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+	display: none;
 }
 
 /* The Close Button */
@@ -154,6 +155,7 @@
 
 	let quote = {};
 	var ebModal = document.getElementById("replacementText");
+			document.getElementByclassName("ebcf_modal_content")[0].style.display ="block";
 	var ebSpan = document.getElementsByClassName("ebcf_close")[0];
 	  ebModal.style.display = "block";
 	fetch('api/quotes/random')
