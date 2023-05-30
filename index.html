@@ -3,14 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Task form for career and self exploration</title>
+  <title>Task form exploring career interests and motivations</title>
   <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Lemon' type='text/css' />
   <style>
-    /* Muted Tones Styling */
-    body {
-      background-color: #C3B091;
-      font-family: Arial, sans-serif;
-    }
+* {
+  box-sizing:border-box;
+}
+
+html,body {
+  background-color: #C3B091;
+  min-height:100%;
+  height:100%;
+  background-image:url(http://theartmad.com/wp-content/uploads/Dark-Grey-Texture-Wallpaper-5.jpg);
+  background-size:cover;
+  background-position:top center;
+  font-family:helvetica neue, helvetica, arial, sans-serif;
+  font-weight:200;
+  &.modal-active {
+    overflow: hidden;
+  }
+}
+
+#modal-container {
+  position:fixed;
+  display:table;
+  height:100%;
+  width:100%;
+  top:0;
+  left:0;    
+
     h1 {
       font-family: Papyrus, fantasy;
       font-size: 23px;
@@ -45,13 +66,6 @@
       font-weight: 400;
       line-height: 23px;
     }
-    pre {
-      font-family: Lemon;
-      font-size: 11px;
-      font-style: normal;
-      font-variant: normal;
-      font-weight: 400;
-    }
     h3 {
       color: #645452;
       text-align: center;
@@ -69,20 +83,129 @@
         max-width: 90%;
       }
     }
-    .replacementText {
-      color: #645452;
-      text-align: center;
-	  margin: auto;
-  width: 50%;
-  border: 3px solid green;
-  padding: 10px  margin: auto;
-  width: 50%;
-  border: 3px solid green;
-  padding: 10px
+ 
+.replacementText  {
+    transform:scale(1);
+    .modal-background {
+      background:rgba(0,0,0,.0);
+      animation: fadeIn .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+      .modal {
+        height:75px;
+        width:75px;
+        border-radius:75px;
+        overflow:hidden;
+        animation: bondJamesBond 1.5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+        h2,p {
+          opacity:0;
+          position:relative;
+          animation: modalContentFadeIn .5s 1.4s linear forwards;
+        }
+      }
     }
-.type{
-display: hidden;
+    &.out {
+      animation: slowFade .5s 1.5s linear forwards;
+      .modal-background {
+        background-color:rgba(0,0,0,.7);
+        animation: fadeToRed 2s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+        .modal {
+          border-radius:3px;
+          height:162px;
+          width:227px;
+          animation: killShot 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+          h2,p {
+            animation:modalContentFadeOut .5s .5 cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+          }
+        }
+      }
+    }
+  }
+  .modal-background {
+    display:table-cell;
+    background:rgba(0,0,0,.8);
+    text-align:center;
+    vertical-align:middle;
+    .modal {
+      background:tan;
+      padding:50px;
+      display:inline-block;
+      border-radius:3px;
+      font-weight:300;
+      position:relative;
+      h2 {
+        font-size:25px;
+        line-height:25px;
+        margin-bottom:15px;
+      }
+      p {
+        font-size:18px;
+        line-height:22px;
+      }
+      .modal-svg {
+        position:absolute;
+        top:0;
+        left:0;
+        height:100%;
+        width:100%;
+        border-radius:3px;
+        rect {
+          stroke: #fff;
+          stroke-width: 2px;
+          stroke-dasharray: 778;
+          stroke-dashoffset: 778;
+        }
+      }
+    }
+  }
 }
+
+.content {
+  min-height:100%;
+  height:100%;
+  background:white;
+  position:relative;
+  z-index:0;
+  h1 {
+    padding:75px 0 30px 0;
+    text-align:center;
+    font-size:30px;
+    line-height:30px;
+  }
+  
+
+@keyframes bondJamesBond {
+  0% {
+    transform:translateX(1000px);
+  }
+  80% {
+    transform:translateX(0px);
+    border-radius:75px;
+    height:75px;
+    width:75px;
+  }
+  90% {
+    border-radius:3px;
+    height:182px;
+    width:247px;
+  }
+  100% {
+    border-radius:3px;
+    height:162px;
+    width:227px;
+  }
+}
+
+@keyframes killShot {
+  0% {
+    transform:translateY(0) rotate(0deg);
+    opacity:1;
+  }
+  100% {
+    transform:translateY(300px) rotate(45deg);
+    opacity:0;
+  }
+}
+
+
   </style>
 </head>
 <body>
@@ -92,13 +215,20 @@ display: hidden;
       <iframe style="height: 1675px; width: 640px;"  id="myIFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSecZ5NHv9E0uj35bUzhB7ad3Z6jjmpWbyPi7v9DCivxlzvPQQ/viewform?embedded=true"></iframe>
     </div>
 </div>
-   
+
+   <div id="modal-container">
+	<div class="modal-background">
+	   <svg class="modal-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="none">
+								<rect x="0" y="0" fill="none" width="226" height="162" rx="3" ry="3"></rect>
+							</svg>
     <div id="replacementText" class="replacementText">
-      <p id="thanks">O
-</p> 
+      <p id="thanks"></p> 
   <div id="quoteContainer" class="type"></div>
     </div>
   </div>
+	</div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script>
 
@@ -115,6 +245,8 @@ display: hidden;
 	 // Show the replacement text
 	var thanks = new Typed(  '.thanks', {strings: [`Thank you for being consistent with your logs.`, `See you tomorrow!`, `And don't forget to follow up and look for patterns with your advocated this week`], typeSpeed: 25});
 	 replacementTextElement.style.display = 'block';
+         replacementTextElement.addClass('seven');
+
    }
 });
  }
