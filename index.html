@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -131,7 +132,8 @@
 
   <div class="ebcf_modal-content">
     <span class="ebcf_close">
-    <p>Some text in the Modal..</p> </span>
+    <p>Some text in the Modal..</p>
+	<blockquote class="quoteContainer" > </blockquote> </span>
   </div>
 
 </div>
@@ -159,12 +161,12 @@
       .then(data => {
         if (data.status) {
           // Access the quote and category from the response data
-          const quote = data.quote;
+          var quote = data.quote;
           quote:quote = quote
 		};
 	});
           const quoteContainer = document.getElementById('quoteContainer');
-          quoteContainer.innerHTML = quote.quote;
+          document.getElementById("quoteContainer").innerHTML = quote.quote;
 	
           const myIFrameContainer = document.getElementById('myIFrameContainer');
           const replacementTextElement = document.getElementById('replacementText');
