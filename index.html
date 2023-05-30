@@ -150,7 +150,7 @@
 
 
 
-
+	let quote = {};
 	var ebModal = document.getElementById("replacementText");
 	var ebSpan = document.getElementsByClassName("ebcf_close")[0];
 	  ebModal.style.display = "block";
@@ -160,12 +160,12 @@
         if (data.status) {
           // Access the quote and category from the response data
           const quote = data.quote;
-          const category = data.category;
+          quote:quote = quote
 		};
-	
-          const quoteContainer = document.getElementById('quoteContainer');
-          quoteContainer.innerHTML = quote;
 	});
+          const quoteContainer = document.getElementById('quoteContainer');
+          quoteContainer.innerHTML = quote.quote;
+	
           const myIFrameContainer = document.getElementById('myIFrameContainer');
           const replacementTextElement = document.getElementById('replacementText');
 
