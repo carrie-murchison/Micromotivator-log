@@ -97,25 +97,26 @@
     </div>
   </div>
   <script>
-	 fetch('api/quotes/random')
+
+    // Function to handle form submission
+    const handleFormSubmit = () => {
+      const replacementTextElement = document.getElementById('replacementText');
+	      fetch('api/quotes/random')
       .then(response => response.json())
       .then(data => {
         if (data.status) {
           // Access the quote and category from the response data
           const quote = data.quote;
           const category = data.category;
-    // Function to handle form submission
-    const handleFormSubmit = () => {
-      const replacementTextElement = document.getElementById('replacementText');
-
       // Show the replacement text
+	const quoteContainer = document.getElementById('quoteContainer');
+          quoteContainer.innerHTML = quote;
       replacementTextElement.style.display = 'block';
     };
 
     // Listen for the alert event
     window.addEventListener('alert', handleFormSubmit);
- const quoteContainer = document.getElementById('quoteContainer');
-          quoteContainer.innerHTML = quote;
+ 
 
   </script>
 </body>
