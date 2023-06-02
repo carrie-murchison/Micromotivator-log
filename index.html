@@ -5,6 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Form</title>
   <style>
+  .form-wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f2f2f2;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-wrapper label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .form-wrapper select {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .form-wrapper input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
  .quote-wrapper {
       margin-top: 20px;
       padding: 10px;
@@ -23,7 +53,7 @@
   <div class="form-wrapper">
      <form id="myForm" action="https://script.google.com/macros/s/AKfycbzv2D4o54yt5zKaOxLCsy4Tdo3O2URiIjT3w3V_ivXYgIqgCMUfTIcUHb7Gnrw-fkOv/exec" method="POST">
       <label for="category">Category</label>
-      <select name="category" multiple>
+      <select name="category">
         <option value="Creative control (little instruction)">Creative control (little instruction)</option>
         <option value="Highly structured with clear expectations">Highly structured with clear expectations</option>
         <option value="Highly collaborative">Highly collaborative</option>
@@ -32,7 +62,7 @@
       </select>
 
       <label for="beneficiary">Who benefited from your work? </label>
-      <select name="beneficiary" multiple>
+      <select name="beneficiary">
         <option value="An individual customer">An individual customer</option>
         <option value="A group/community of people">A group/community of people</option>
         <option value="I did personally">I did personally</option>
@@ -51,7 +81,7 @@
       </select>
 
       <label for="involved">Who else was primarily involved in the work you did?</label>
-      <select name="involved" multiple>
+      <select name="involved">
         <option value="Colleagues/peers">Colleagues/peers</option>
         <option value="Management/leadership">Management/leadership</option>
         <option value="Students">Students</option>
@@ -62,7 +92,7 @@
   <br>
   <div>
     <label for="recognition">What kind of recognition did you or the work you did receive?</label><br>
-    <select id="recognition" name="recognition" multiple>
+    <select id="recognition" name="recognition">
       <option value="verbal">Verbal recognition: Praise from team or individual</option>
 	<option value="verbal">Material recognition: Monetary, or other incentive</option>
 	<option value="verbal">Opportunity recognition: Possible promotion or raise</option>
