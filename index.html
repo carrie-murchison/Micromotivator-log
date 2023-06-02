@@ -120,7 +120,7 @@ body{
   </div> 
 
     <!-- Bootstrap Modal -->
-  <div class="modal fade hide" id="quoteModal" tabindex="-1" role="dialog" aria-labelledby="quoteModalLabel">
+  <div class="modal fade hide" id="quoteModal" tabindex="-1" role="dialog" aria-labelledby="quoteModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -147,23 +147,25 @@ body{
   
 
   <script>
-
-    document.querySelector('#myForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-	$('#myForm').hide();
-	$('#quoteModal').show();
-	    // JavaScript to show the quote modal after form submission
+	document.querySelector('#myForm').addEventListener('submit', function(event) {
+	 event.preventDefault();
+	   let quote = {};
+	        // JavaScript to show the quote modal after form submission
             fetch('/api/quotes/random')
       .then(response => response.json())
       .then(data => {
         if (data.status) {
           // Access the quote from the response data
-          const quote = data.quote
+          quote.data =  data.quote
         }
-	$('#quoteText').html  = quote;
+
 
       })
-      .catch(error => console.log(error));
+ 
+	$('#myForm').hide();
+	$('#quoteModal').show();
+	$('#quoteText').html  = quote.data;
+	
     });
 	
   </script>
