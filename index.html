@@ -56,6 +56,7 @@ body{
 	width: 600px;
 	margin-left: 25%;
 	color: tan;
+
   }
 
     #quoteModal p {
@@ -63,11 +64,17 @@ body{
       margin: 0;
 
     }
+.show {
+display: block;
+}
+.hide {
+display: none;
+}
   </style>
 </head>
 <body>
   <div class="form-wrapper">
-     <form id="myForm" action="https://script.google.com/macros/s/AKfycbzv2D4o54yt5zKaOxLCsy4Tdo3O2URiIjT3w3V_ivXYgIqgCMUfTIcUHb7Gnrw-fkOv/exec" method="POST">
+     <form id="myForm" class="form"  action="https://script.google.com/macros/s/AKfycbzv2D4o54yt5zKaOxLCsy4Tdo3O2URiIjT3w3V_ivXYgIqgCMUfTIcUHb7Gnrw-fkOv/exec" method="POST">
       <label for="category">Category</label>
       <select name="category">
         <option value="Creative control (little instruction)">Creative control (little instruction)</option>
@@ -117,7 +124,7 @@ body{
   </div> 
 
     <!-- Bootstrap Modal -->
-  <div class="modal fade" id="quoteModal" tabindex="-1" role="dialog" aria-labelledby="quoteModalLabel" aria-hidden="true">
+  <div class="modal fade hide" id="quoteModal" tabindex="-1" role="dialog" aria-labelledby="quoteModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -127,8 +134,8 @@ body{
           </button>
         </div>
         <div class="modal-body">
-          <p>Here is your quote:</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <p class="quoteText">Here is your quote:</p>
+          <p>Thank you for your submission. Consistency is key with this activity. Don't forget to look for patterns with your advocate at your next one on one.</p>
         </div>
       </div>
     </div>
@@ -142,9 +149,10 @@ body{
 
   <script>
 
-    document.querySelector('form').addEventListener('submit', function(event) {
+    document.querySelector('#myForm').addEventListener('submit', function(event) {
       event.preventDefault();
-      $('#quoteModal').modal('show');
+	$('#myForm').hide();
+	$('#quoteModal').show();
 	    // JavaScript to show the quote modal after form submission
             fetch('/api/quotes/random')
       .then(response => response.json())
@@ -154,7 +162,7 @@ body{
           const quote = data.quote;
 
           // Display the quote on the page
-          const quoteElement = document.getElementById('quote');
+          const quoteElement = document.getElementById('quoteText');
           quoteElement.textContent = quote;
         }
       })
