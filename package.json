@@ -26,5 +26,6 @@
     "express": "^4.18.2",
     "node-quotegen": "^0.0.2",
     "typed": "^10.0.0-beta.2"
-  }
+  },
+  "devDependencies": {}
 }
