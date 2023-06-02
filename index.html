@@ -153,58 +153,57 @@ body{
 	$('#myForm').show();
         $('#quoteModal').hide();
 
-	document.querySelector('#myForm').addEventListener('submit', function(event) {
-	 event.preventDefault();
-	   let quote = {};
-	        // JavaScript to show the quote modal after form submission
+
+function submitForm(event) {
+  event.preventDefault(); // Prevent form submission
+
+          let quote = {};
+                // JavaScript to show the quote modal after form submission
             fetch('/api/quotes/random')
       .then(response => response.json())
       .then(data => {
         if (data.status) {
           // Access the quote from the response data
          const quote =  data.quote
-	document.getElementById('quoteText').innerHTML = `${quote}`;
+        document.getElementById('quoteText').innerHTML = `${quote}`;
         }
-	
+        
       })
  
-	$('#myForm').hide();
-	$('#quoteModal').show();
-	
-	
+        $('#myForm').hide();
+        $('#quoteModal').show();
+
+
+  // Get form values
+  const category = document.getElementById('category').value;
+  // Add other form fields as needed
+
+  // Create a payload object
+  const payload = {
+    category: category,
+    // Add other form fields to the payload
+  };
+
+  // Send the form data to the server
+  fetch('https://script.google.com/macros/s/AKfycbzv2D4o54yt5zKaOxLCsy4Tdo3O2URiIjT3w3V_ivXYgIqgCMUfTIcUHb7Gnrw-fkOv/exec', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  })
+    .then(response => response.text())
+    .then(data => {
+      // Handle the response from the server
+      console.log(data);
+      // Display success message or perform any other actions
+    })
+    .catch(error => {
+      console.error(error);
+      // Display error message or perform any other error handling
     });
-	
-function submitForm(event) {
-      event.preventDefault(); // Prevent form submission
+}
 
-      // Get form values
-      const category = document.getElementById('category').value;
-
-      // Create a payload object
-      const payload = {
-        category: category,
-        // Add other form fields to the payload
-      };
-
-      // Send the form data to the server
-      fetch('https://script.google.com/a/macros/thelastmile.org/s/AKfycbwSc2Bt7T4jGtNF10-bE64jidqioPIjdbXC8fYZH3m59v-_e_WqCBJKlkIdewIuRXJb/exec', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      })
-        .then(response => response.json())
-        .then(data => {
-          // Handle the response from the server
-          console.log(data);
-          // Display success message or perform any other actions
-        })
-        .catch(error => {
-          console.error(error);
-          // Display error message or perform any other error handling
-        });
-    }
   </script>
 </body>
 </html>
