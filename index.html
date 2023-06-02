@@ -54,7 +54,7 @@ body{
       border: 1px solid #ccc;
       border-radius: 4px;
 	width: 800px;
-	margin-left: 35%;
+	margin-left: 30%;
 	color: tan;
 
 
@@ -130,7 +130,7 @@ body{
           </button>
         </div>
         <div class="modal-body">
-          <p class="quoteText"></p>
+          <p id="quoteText"></p>
 		</br>
 		</br>
 		</br>
@@ -159,8 +159,9 @@ body{
         if (data.status) {
           // Access the quote from the response data
           const quote = data.quote
-		$('.quoteText').html  = quote;
         }
+	$('#quoteText').html  = quote;
+
       })
       .catch(error => console.log(error));
     });
