@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task form for career and self exploration</title>
+  <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Lemon' type='text/css' />
+  <style>
+    /* Muted Tones Styling */
+    body {
+      background-color: #C3B091;
+     
+    }
+    h1 {
+      font-family: Papyrus, fantasy;
+      font-size: 23px;
+      font-style: normal;
+      font-variant: small-caps;
+      font-weight: 700;
+      line-height: 23px;
+    }
+    h3 {
+      font-family: Papyrus, fantasy;
+      font-size: 17px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 700;
+      line-height: 23px;
+      color: #645452;
+      text-align: center;
+    }
+    p {
+      font-family: Lemon;
+      font-size: 14px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 400;
+      line-height: 23px;
+    }
+    blockquote {
+      font-family: Lemon;
+      font-size: 17px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 400;
+      line-height: 23px;
+    }
+    pre {
+      font-family: Lemon;
+      font-size: 11px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 400;
+    }
+   
+    #myIFrameContainer {
+      position: relative;
+	width: 100%;
+	height: 100%;
+      margin: 0 auto;
+      padding: 5px 35px 5px 15px;
+      background-color: #5D8AA8;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    }
+    /* Responsive Styles */
+    @media screen and (max-width: 600px) {
+      .form-wrapper {
+        max-width: 90%;
+      }
+    }
+.background {
+	position: absolute;
+	background-size: cover;
+	width: 700px;
+	height: 1700px;
+	margin: 25%;
+	text-align: center;
+	background-color: #4c7d8e;
+}
+.modal{
+position: absolute;
+width: 100%;
+font-weight: bold;
+font-size: 1.5em;
+height: auto;
+text-align: center;
+background-color: #99b898;
+color: white;
+margin: 200px 25% auto 25%;
+font-family: Papyrus, fantasy;   
+} 
+
+  </style>
+</head>
+<body>
+
+   <div class="background">
+    <div id="myIFrameContainer">
+	<h2>2023 Reentry - WDEA Activity</h2>
+	<iframe id="myIframe" style="display: block;" src="https://docs.google.com/forms/d/e/1FAIpQLSecZ5NHv9E0uj35bUzhB7ad3Z6jjmpWbyPi7v9DCivxlzvPQQ/viewform?embedded=true" width="640" height="1644" frameborder="0" marginheight="0" marginwidth="0"></iframe>
+		<div id="modal" class="modal" style="display: none;">
+		<div id="replacementText"  class="replace"><span>Thank you for logging!! It's important to be consistent, so we will see you tommorrow. Also, don't forget to look for patterns with your advocate at the end of the week. </span>
+		<div id="blockq" class="blockq">
+		</div>
+		</div>
+		</div>
+		
+
+	</div>
+	</div>
+  <script>
+    // Function to handle form submit
+
+	        const handleFormSubmit = () => {
+            // Hide the form container and show the replacement text
+          // Show the replacement text
+     
+		
+	let modal = document.getElementById("modal");
+		modal.style.display = "block";
+		
+	let blockq = document.getElementById("quote");
+		blockq.style.display = "block";
+	document.getElementById("blockq").style.display = "block";
+		
+	document.getElementById("myIframe").style.display = 'none';
+    };
+	let quote = {};
+	fetch('api/quotes/random')
+      .then(response => response.json())
+      .then(data => {
+        if (data.status) {
+          // Access the quote and category from the response data
+          var quote = data.quote;
+          quote:quote = quote
+		};
+        document.getElementById("blockq").innerHTML = quote.quote;
+	});
+
+               
+    // Listen for the alert event
+    window.addEventListener('alert', handleFormSubmit);
+  </script>
+</body>
+</html>

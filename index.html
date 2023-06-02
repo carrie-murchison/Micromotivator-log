@@ -94,53 +94,87 @@ font-family: Papyrus, fantasy;
   </style>
 </head>
 <body>
+ <div class="form-wrapper">
+    <h3>2023 Reentry - WDEA Activity</h3>
+    <form id="myForm" action="https://script.google.com/macros/s/AKfycby9vQ3p3pRi3V7oX5TdbDy9rSc_https://script.google.com/macros/s/AKfycbzv2D4o54yt5zKaOxLCsy4Tdo3O2URiIjT3w3V_ivXYgIqgCMUfTIcUHb7Gnrw-fkOv/exec" method="POST">
+      <label for="category">Category:</label>
+      <select id="category" name="category" multiple required>
+        <option value="Creative control">Creative control (little instruction)</option>
+        <option value="Highly structured">Highly structured with clear expectations</option>
+        <option value="Highly collaborative">Highly collaborative</option>
+        <option value="Proficient area">An area you are proficient in</option>
+        <option value="Challenging">Challenging requiring some research</option>
+      </select>
 
-   <div class="background">
-    <div id="myIFrameContainer">
-	<h2>2023 Reentry - WDEA Activity</h2>
-	<iframe id="myIframe" style="display: block;" src="https://docs.google.com/forms/d/e/1FAIpQLSecZ5NHv9E0uj35bUzhB7ad3Z6jjmpWbyPi7v9DCivxlzvPQQ/viewform?embedded=true" width="640" height="1644" frameborder="0" marginheight="0" marginwidth="0"></iframe>
-		<div id="modal" class="modal" style="display: none;">
-		<div id="replacementText"  class="replace"><span>Thank you for logging!! It's important to be consistent, so we will see you tommorrow. Also, don't forget to look for patterns with your advocate at the end of the week. </span>
-		<div id="blockq" class="blockq">
-		</div>
-		</div>
-		</div>
-		
+      <label for="beneficiary">Who benefited from your work?</label>
+      <select id="beneficiary" name="beneficiary" multiple required>
+        <option value="Individual customer">An individual customer</option>
+        <option value="Group/community">A group/community of people</option>
+        <option value="Personal benefit">I did personally</option>
+        <option value="Team/department">My team/department</option>
+        <option value="Organization">The organization</option>
+        <option value="Society">Society</option>
+      </select>
 
-	</div>
-	</div>
+      <label for="engagement">Rate your engagement and fulfillment:</label>
+      <select id="engagement" name="engagement" required>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+
+      <label for="involved">Who else was primarily involved in the work you did?</label>
+      <select id="involved" name="involved" multiple required>
+        <option value="Colleagues/peers">Colleagues/peers</option>
+        <option value="Management/leadership">Management/leadership</option>
+        <option value="Students">Students</option>
+        <option value="Cross department teams">Cross department teams</option>
+        <option value="Independent work">I worked independently</option>
+      </select>
+
+      <label for="recognition">What kind of recognition did you or the work you did receive?</label>
+      <select id="recognition" name="recognition" multiple required>
+        <option value="Verbal">Verbal recognition: Praise from team or individual</option>
+        <option value="Material">Material recognition: Monetary or other incentive</option>
+        <option value="Opportunity">Opportunity recognition: Possible promotion or raise</option>
+        <option value="Public">Public recognition: Social media or other publication recognition</option>
+        <option value="None">No recognition</option>
+      </select>
+
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+
   <script>
-    // Function to handle form submit
+    const form = document.getElementById('myForm');
 
-	        const handleFormSubmit = () => {
-            // Hide the form container and show the replacement text
-          // Show the replacement text
-     
-		
-	let modal = document.getElementById("modal");
-		modal.style.display = "block";
-		
-	let blockq = document.getElementById("quote");
-		blockq.style.display = "block";
-	document.getElementById("blockq").style.display = "block";
-		
-	document.getElementById("myIframe").style.display = 'none';
-    };
-	let quote = {};
-	fetch('api/quotes/random')
-      .then(response => response.json())
-      .then(data => {
-        if (data.status) {
-          // Access the quote and category from the response data
-          var quote = data.quote;
-          quote:quote = quote
-		};
-        document.getElementById("blockq").innerHTML = quote.quote;
-	});
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-               
-    // Listen for the alert event
-    window.addEventListener('alert', handleFormSubmit);
+      const formData = new FormData(form);
+      const url = form.action;
+      const options = {
+        method: form.method,
+        body: new URLSearchParams(formData),
+      };
+
+      try {
+        const response = await fetch(url, options);
+        if (response.ok) {
+          // Handle successful form submission here
+          console.log('Form submitted successfully');
+        } else {
+          // Handle form submission error here
+          console.error('Error submitting the form');
+        }
+      } catch (error) {
+        // Handle fetch error here
+        console.error('Fetch error:', error);
+      }
+    });
   </script>
 </body>
 </html>
+
