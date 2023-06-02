@@ -53,23 +53,19 @@ body{
       background-color: black;
       border: 1px solid #ccc;
       border-radius: 4px;
-	width: 600px;
-	margin-left: 25%;
+	width: 800px;
+	margin-left: 35%;
 	color: tan;
+
 
   }
 
     #quoteModal p {
-      font-size: 14px;
+      font-size: 24px;
       margin: 0;
-
+	background-size: cover;
     }
-.show {
-display: block;
-}
-.hide {
-display: none;
-}
+
   </style>
 </head>
 <body>
@@ -128,14 +124,17 @@ display: none;
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="quoteModalLabel">Thank you for submitting the form!</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <h5 class="modal-title" id="quoteModalLabel">Thank's for being consistent with your logging!</h5>
+          <button style="float: right" type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <p class="quoteText">Here is your quote:</p>
-          <p>Thank you for your submission. Consistency is key with this activity. Don't forget to look for patterns with your advocate at your next one on one.</p>
+          <p class="quoteText"></p>
+		</br>
+		</br>
+		</br>
+          <p>See you tomorrow... Don't forget to look for patterns with your advocate at your next one on one.</p>
         </div>
       </div>
     </div>
@@ -159,11 +158,8 @@ display: none;
       .then(data => {
         if (data.status) {
           // Access the quote from the response data
-          const quote = data.quote;
-
-          // Display the quote on the page
-          const quoteElement = document.getElementById('quoteText');
-          quoteElement.textContent = quote;
+          const quote = data.quote
+		$('.quoteText').html  = quote;
         }
       })
       .catch(error => console.log(error));
