@@ -1,123 +1,64 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Task form for career and self exploration</title>
-  <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Lemon' type='text/css' />
+  <title>Form</title>
   <style>
-    /* Muted Tones Styling */
-    body {
-      background-color: #C3B091;
-     
-    }
-    h1 {
-      font-family: Papyrus, fantasy;
-      font-size: 23px;
-      font-style: normal;
-      font-variant: small-caps;
-      font-weight: 700;
-      line-height: 23px;
-    }
-    h3 {
-      font-family: Papyrus, fantasy;
-      font-size: 17px;
-      font-style: normal;
-      font-variant: normal;
-      font-weight: 700;
-      line-height: 23px;
-      color: #645452;
-      text-align: center;
-    }
-    p {
-      font-family: Lemon;
-      font-size: 14px;
-      font-style: normal;
-      font-variant: normal;
-      font-weight: 400;
-      line-height: 23px;
-    }
-    blockquote {
-      font-family: Lemon;
-      font-size: 17px;
-      font-style: normal;
-      font-variant: normal;
-      font-weight: 400;
-      line-height: 23px;
-    }
-    pre {
-      font-family: Lemon;
-      font-size: 11px;
-      font-style: normal;
-      font-variant: normal;
-      font-weight: 400;
-    }
-   
-    #myIFrameContainer {
-      position: relative;
-	width: 100%;
-	height: 100%;
+    .form-wrapper {
+      max-width: 600px;
       margin: 0 auto;
-      padding: 5px 35px 5px 15px;
-      background-color: #5D8AA8;
+      padding: 20px;
+      background-color: #f2f2f2;
       box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
     }
-    /* Responsive Styles */
-    @media screen and (max-width: 600px) {
-      .form-wrapper {
-        max-width: 90%;
-      }
-    }
-.background {
-	position: absolute;
-	background-size: cover;
-	width: 700px;
-	height: 1700px;
-	margin: 25%;
-	text-align: center;
-	background-color: #4c7d8e;
-}
-.modal{
-position: absolute;
-width: 100%;
-font-weight: bold;
-font-size: 1.5em;
-height: auto;
-text-align: center;
-background-color: #99b898;
-color: white;
-margin: 200px 25% auto 25%;
-font-family: Papyrus, fantasy;   
-} 
 
+    .form-wrapper label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .form-wrapper select {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .form-wrapper input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
- <div class="form-wrapper">
-    <h3>2023 Reentry - WDEA Activity</h3>
-    <form id="myForm" action="https://script.google.com/macros/s/AKfycby9vQ3p3pRi3V7oX5TdbDy9rSc_https://script.google.com/macros/s/AKfycbzv2D4o54yt5zKaOxLCsy4Tdo3O2URiIjT3w3V_ivXYgIqgCMUfTIcUHb7Gnrw-fkOv/exec" method="POST">
-      <label for="category">Category:</label>
-      <select id="category" name="category" multiple required>
-        <option value="Creative control">Creative control (little instruction)</option>
-        <option value="Highly structured">Highly structured with clear expectations</option>
+  <div class="form-wrapper">
+    <form id="myForm" action="https://script.google.com/macros/s/XXXXXXXXXXXXXXXXXX/exec" method="POST">
+      <label for="category">Category (check all that apply)</label>
+      <select name="category" multiple>
+        <option value="Creative control (little instruction)">Creative control (little instruction)</option>
+        <option value="Highly structured with clear expectations">Highly structured with clear expectations</option>
         <option value="Highly collaborative">Highly collaborative</option>
-        <option value="Proficient area">An area you are proficient in</option>
-        <option value="Challenging">Challenging requiring some research</option>
+        <option value="An area you are proficient in">An area you are proficient in</option>
+        <option value="Challenging requiring some research">Challenging requiring some research</option>
       </select>
 
-      <label for="beneficiary">Who benefited from your work?</label>
-      <select id="beneficiary" name="beneficiary" multiple required>
-        <option value="Individual customer">An individual customer</option>
-        <option value="Group/community">A group/community of people</option>
-        <option value="Personal benefit">I did personally</option>
-        <option value="Team/department">My team/department</option>
-        <option value="Organization">The organization</option>
+      <label for="beneficiary">Who benefited from your work? (check all that apply)</label>
+      <select name="beneficiary" multiple>
+        <option value="An individual customer">An individual customer</option>
+        <option value="A group/community of people">A group/community of people</option>
+        <option value="I did personally">I did personally</option>
+        <option value="My team/department">My team/department</option>
+        <option value="The organization">The organization</option>
         <option value="Society">Society</option>
       </select>
 
-      <label for="engagement">Rate your engagement and fulfillment:</label>
-      <select id="engagement" name="engagement" required>
+      <label for="engagement">Rate your engagement and fulfillment while doing the work on a scale from 1 to 5</label>
+      <select name="engagement">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -126,55 +67,25 @@ font-family: Papyrus, fantasy;
       </select>
 
       <label for="involved">Who else was primarily involved in the work you did?</label>
-      <select id="involved" name="involved" multiple required>
+      <select name="involved" multiple>
         <option value="Colleagues/peers">Colleagues/peers</option>
         <option value="Management/leadership">Management/leadership</option>
         <option value="Students">Students</option>
         <option value="Cross department teams">Cross department teams</option>
-        <option value="Independent work">I worked independently</option>
+        <option value="I worked independently">I worked independently</option>
       </select>
 
       <label for="recognition">What kind of recognition did you or the work you did receive?</label>
-      <select id="recognition" name="recognition" multiple required>
-        <option value="Verbal">Verbal recognition: Praise from team or individual</option>
-        <option value="Material">Material recognition: Monetary or other incentive</option>
-        <option value="Opportunity">Opportunity recognition: Possible promotion or raise</option>
-        <option value="Public">Public recognition: Social media or other publication recognition</option>
-        <option value="None">No recognition</option>
+      <select name="recognition" multiple>
+        <option value="Verbal recognition: Praise from team or individual">Verbal recognition: Praise from team or individual</option>
+        <option value="Material recognition: Monetary, or other incentive">Material recognition: Monetary, or other incentive</option>
+        <option value="Opportunity recognition: Possible promotion or raise">Opportunity recognition: Possible promotion or raise</option>
+        <option value="Public recognition: Social media or other publication recognition">Public recognition: Social media or other publication recognition</option>
+        <option value="No recognition">No recognition</option>
       </select>
 
       <input type="submit" value="Submit">
     </form>
   </div>
-
-  <script>
-    const form = document.getElementById('myForm');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const formData = new FormData(form);
-      const url = form.action;
-      const options = {
-        method: form.method,
-        body: new URLSearchParams(formData),
-      };
-
-      try {
-        const response = await fetch(url, options);
-        if (response.ok) {
-          // Handle successful form submission here
-          console.log('Form submitted successfully');
-        } else {
-          // Handle form submission error here
-          console.error('Error submitting the form');
-        }
-      } catch (error) {
-        // Handle fetch error here
-        console.error('Fetch error:', error);
-      }
-    });
-  </script>
 </body>
 </html>
-
