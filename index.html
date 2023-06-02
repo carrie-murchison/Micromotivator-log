@@ -47,16 +47,17 @@ body{
       cursor: pointer;
     }
 
- .quote-wrapper {
+ .quoteModal {
       margin-top: 20px;
       padding: 10px;
       background-color: black;
       border: 1px solid #ccc;
       border-radius: 4px;
-	display: hidden;
-    }
+	width: 600px;
+	margin-left: 25%;
+  }
 
-    .quote-wrapper p {
+    .quoteModal p {
       font-size: 14px;
       margin: 0;
 	color: cream;
@@ -137,46 +138,7 @@ body{
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   
-  <script>
 
-    // Make a request to the server API and handle the response
-
-    fetch('/api/quotes/random')
-      .then(response => response.json())
-      .then(data => {
-        if (data.status) {
-          // Access the quote from the response data
-          const quote = data.quote;
-
-          // Display the quote on the page
-          const quoteElement = document.getElementById('quote');
-          quoteElement.textContent = quote;
-        }
-      })
-      .catch(error => console.log(error));
- <!-- Bootstrap Modal -->
-  <div class="modal fade" id="quoteModal" tabindex="-1" role="dialog" aria-labelledby="quoteModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="quoteModalLabel">Thank you for submitting the form!</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Here is your quote:</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Bootstrap and JavaScript for Modal -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-  
   <script>
     // JavaScript to show the quote modal after form submission
 	    fetch('/api/quotes/random')
