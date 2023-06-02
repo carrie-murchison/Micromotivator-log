@@ -160,16 +160,14 @@ body{
         if (data.status) {
           // Access the quote from the response data
          const quote =  data.quote
+	document.getElementById('quoteText').innerHTML = `${quote}`;
         }
-	     $('#myForm').hide();
-        $('#quoteModal').show();
-        $('#quoteText').append(quote);
-
+	
       })
  
 	$('#myForm').hide();
 	$('#quoteModal').show();
-	$('#quoteText').html  = quote.data;
+	
 	
     });
 	
