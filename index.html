@@ -5,40 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Form</title>
   <style>
-    .form-wrapper {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
+ .quote-wrapper {
+      margin-top: 20px;
+      padding: 10px;
       background-color: #f2f2f2;
-      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-    }
-
-    .form-wrapper label {
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    .form-wrapper select {
-      width: 100%;
-      padding: 5px;
       border: 1px solid #ccc;
       border-radius: 4px;
     }
 
-    .form-wrapper input[type="submit"] {
-      padding: 10px 20px;
-      background-color: #4caf50;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
+    .quote-wrapper p {
+      font-size: 14px;
+      margin: 0;
     }
   </style>
 </head>
 <body>
   <div class="form-wrapper">
-    <form id="myForm" action="https://script.google.com/macros/s/XXXXXXXXXXXXXXXXXX/exec" method="POST">
-      <label for="category">Category (check all that apply)</label>
+     <form id="myForm" action="https://script.google.com/macros/s/AKfycbzv2D4o54yt5zKaOxLCsy4Tdo3O2URiIjT3w3V_ivXYgIqgCMUfTIcUHb7Gnrw-fkOv/exec" method="POST">
+      <label for="category">Category</label>
       <select name="category" multiple>
         <option value="Creative control (little instruction)">Creative control (little instruction)</option>
         <option value="Highly structured with clear expectations">Highly structured with clear expectations</option>
@@ -47,7 +31,7 @@
         <option value="Challenging requiring some research">Challenging requiring some research</option>
       </select>
 
-      <label for="beneficiary">Who benefited from your work? (check all that apply)</label>
+      <label for="beneficiary">Who benefited from your work? </label>
       <select name="beneficiary" multiple>
         <option value="An individual customer">An individual customer</option>
         <option value="A group/community of people">A group/community of people</option>
@@ -71,21 +55,38 @@
         <option value="Colleagues/peers">Colleagues/peers</option>
         <option value="Management/leadership">Management/leadership</option>
         <option value="Students">Students</option>
-        <option value="Cross department teams">Cross department teams</option>
-        <option value="I worked independently">I worked independently</option>
-      </select>
-
-      <label for="recognition">What kind of recognition did you or the work you did receive?</label>
-      <select name="recognition" multiple>
-        <option value="Verbal recognition: Praise from team or individual">Verbal recognition: Praise from team or individual</option>
-        <option value="Material recognition: Monetary, or other incentive">Material recognition: Monetary, or other incentive</option>
-        <option value="Opportunity recognition: Possible promotion or raise">Opportunity recognition: Possible promotion or raise</option>
-        <option value="Public recognition: Social media or other publication recognition">Public recognition: Social media or other publication recognition</option>
-        <option value="No recognition">No recognition</option>
-      </select>
-
-      <input type="submit" value="Submit">
-    </form>
+        <option value="Cross department teams"</option>
+	 <option value="independent">I worked independently</option>
+    </select>
   </div>
+  <br>
+  <div>
+    <label for="recognition">What kind of recognition did you or the work you did receive?</label><br>
+    <select id="recognition" name="recognition" multiple>
+      <option value="verbal">Verbal recognition: Praise from team or individual</option>
+	<option value="verbal">Material recognition: Monetary, or other incentive</option>
+	<option value="verbal">Opportunity recognition: Possible promotion or raise</option>
+	<option value="verbal">Public recognition: Social media or other publication recognition</option>
+    <div class="quote-wrapper">
+      <p id="quote"></p>
+    </div>
+  </div>
+
+  <script>
+    // Make a request to the server API and handle the response
+    fetch('/api/quotes/random')
+      .then(response => response.json())
+      .then(data => {
+        if (data.status) {
+          // Access the quote from the response data
+          const quote = data.quote;
+
+          // Display the quote on the page
+          const quoteElement = document.getElementById('quote');
+          quoteElement.textContent = quote;
+        }
+      })
+      .catch(error => console.log(error));
+  </script>
 </body>
 </html>
