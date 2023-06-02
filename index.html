@@ -170,10 +170,6 @@ function submitForm(event) {
         
       })
  
-        $('#myForm').hide();
-        $('#quoteModal').show();
-
-
   // Get form values
   const category = document.getElementById('category').value;
   // Add other form fields as needed
@@ -197,6 +193,8 @@ function submitForm(event) {
       // Handle the response from the server
       console.log(data);
       // Display success message or perform any other actions
+        $('#myForm').hide();
+        $('#quoteModal').show();
     })
     .catch(error => {
       console.error(error);
